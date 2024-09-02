@@ -1,9 +1,9 @@
 import { HeartFilled, LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Rating from './Rating';
 
-function MyCarousel({ data, onActiveChange }) {
+function Carousel({ data, onActiveChange }) {
   const [slides, setSlides] = useState(
     [data[data.length - 1]].concat(data.slice(0, data.length - 1)).map((item, index) => ({
       id: item.id,
@@ -12,12 +12,6 @@ function MyCarousel({ data, onActiveChange }) {
       order: index
     }))
   );
-
-  // useEffect(() => {
-  //   if (data?.length) {
-  //     console.log('🚀 ~ useEffect ~ data:', data);
-  //   }
-  // }, [data]);
 
   const next = () => {
     const newSlides = slides.map((slide) => ({
@@ -65,4 +59,4 @@ function MyCarousel({ data, onActiveChange }) {
   );
 }
 
-export default MyCarousel;
+export default Carousel;

@@ -119,8 +119,8 @@
     transform: translateX(50%);
     color: white;
     transition:
-      left ease-in 0.55s,
-      opacity ease-in-out 0.85s;
+      left ease-in 0.5s,
+      opacity ease-in-out 0.5s;
 
     &.active {
       transform: translateX(50%) scale(1.1);

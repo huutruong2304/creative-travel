@@ -5,7 +5,8 @@ import { Content, Footer, Header } from 'antd/es/layout/layout';
 import { ArrowRightOutlined, SearchOutlined } from '@ant-design/icons';
 import TimeSlide from '../components/TimeSlide';
 import { TRAVEL_PAGE_LOCATIONS } from '../data/travel-data';
-import MyCarousel from '../components/MyCarousel';
+import Carousel from '../components/Carousel';
+import { useSpring, animated } from '@react-spring/web';
 
 const MenuItems = [
   { key: 1, label: 'News' },
@@ -18,9 +19,21 @@ export const TravelPage = () => {
   const [selectedSlide, setSelectedSlide] = useState(0);
   const [locations, setLocations] = useState(TRAVEL_PAGE_LOCATIONS);
 
+  const [props, api] = useSpring(
+    () => ({
+      from: { opacity: 0, y: 50 },
+      to: { opacity: 1, y: 0 },
+      delay: 200
+    }),
+    []
+  );
+
   const onActiveChange = (activeItem) => {
-    console.log(activeItem);
     setSelectedSlide(activeItem);
+    api.start({
+      from: { opacity: 0, y: 50 },
+      to: { opacity: 1, y: 20 }
+    });
   };
 
   return (
@@ -41,8 +54,14 @@ export const TravelPage = () => {
             <TimeSlide total={locations.length} active={selectedSlide} />
           </div>
           <div className="center">
-            <h1>{locations[selectedSlide].name}</h1>
-            <h3>{locations[selectedSlide].description}</h3>
+            <animated.div style={props}>
+              <h1>{locations[selectedSlide].name}</h1>
+            </animated.div>
+
+            <animated.div style={props}>
+              <h3>{locations[selectedSlide].description}</h3>
+            </animated.div>
+
             <div>
               <Button className="explore-btn" type="primary">
                 Explore
@@ -51,7 +70,7 @@ export const TravelPage = () => {
             </div>
           </div>
           <div className="right">
-            <MyCarousel data={locations.map((loc) => ({ id: loc.id, link: loc.thumbnail, name: loc.name }))} onActiveChange={onActiveChange} />
+            <Carousel data={locations.map((loc) => ({ id: loc.id, link: loc.thumbnail, name: loc.name }))} onActiveChange={onActiveChange} />
           </div>
         </Content>
         <Footer className="footer">Truong Nguyen - {new Date().getFullYear()}</Footer>
