@@ -8,7 +8,7 @@ import { TRAVEL_PAGE_LOCATIONS } from '../data/travel-data';
 import Carousel from '../components/Carousel';
 import { useSpring, animated } from '@react-spring/web';
 
-const MenuItems = [
+const menuItems = [
   { key: 1, label: 'News' },
   { key: 2, label: 'Destinations' },
   { key: 3, label: 'Blog' },
@@ -41,7 +41,7 @@ export const TravelPage = () => {
       <Layout className="layout">
         <Header className="header">
           <div className="demo-logo ">LOGO</div>
-          <Menu className="nav" theme="dark" mode="horizontal" defaultSelectedKeys={['0']} items={MenuItems} />
+          <Menu className="nav" theme="dark" mode="horizontal" defaultSelectedKeys={['1']} items={menuItems} />
           <div className="profile">
             <div>
               <Button shape="circle" icon={<SearchOutlined color="black" />} />

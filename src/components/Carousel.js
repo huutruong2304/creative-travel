@@ -45,7 +45,7 @@ function Carousel({ data, onActiveChange }) {
             <Rating rate={5} />
           </div>
           <div className="image">
-            <Button className="heart-icon" shape="circle" icon={<HeartFilled />} />
+            <Button className={`heart-icon ${index < 2 ? 'active' : ''}`} shape="circle" icon={<HeartFilled />} />
             <img src={img.link} />
           </div>
         </div>
